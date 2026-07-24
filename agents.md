@@ -10,6 +10,8 @@ This documents how we configured and used the VSCode agent for this project, per
 4. Point the agent at the repo root so it has visibility into `src/`, `knowledge_base/`, and `templates/`
 5. Config file: `config/vscode_agent.json` holds the agent's working rules for this project (see below)
 
+**Note:** this file documents our agreed rules for using Codex. Codex does not automatically read or enforce this config, the team follows these rules manually and reviews agent output against them.
+
 ## `config/vscode_agent.json` (what it should contain)
 
 - Which folders the agent should treat as context (`src/`, `knowledge_base/`)

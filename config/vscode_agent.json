@@ -1,0 +1,29 @@
+
+{
+  "agent": "codex",
+  "project": "uxai-content-creator",
+  "context_folders": [
+    "src/",
+    "knowledge_base/",
+    "templates/"
+  ],
+  "read_only_folders": [
+    "knowledge_base/primary/",
+    "knowledge_base/secondary/"
+  ],
+  "excluded_folders": [
+    "uniqueness_evidence/",
+    ".git/",
+    "__pycache__/"
+  ],
+  "style": {
+    "language": "python",
+    "standard": "PEP8",
+    "prefer": "functions over classes unless state needs to persist"
+  },
+  "usage_rules": [
+    "Use for scaffolding and debugging Python code",
+    "Do not use for writing prompt template wording, content, or human review logic",
+    "All agent-generated code must be reviewed by a teammate before merging"
+  ]
+}
