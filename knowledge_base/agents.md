@@ -5,9 +5,10 @@ This documents how we configured and used the VSCode agent for this project, per
 ## Setup
 
 1. Open the repo in VSCode
-2. Install the AI agent extension used (GitHub Copilot / Continue / Cline, whichever the team picked)
-3. Point the agent at the repo root so it has visibility into `src/`, `knowledge_base/`, and `templates/`
-4. Config file: `config/vscode_agent.json` holds the agent's working rules for this project (see below)
+2. Install the Codex extension (OpenAI Codex for VSCode)
+3. Sign in / authenticate with the API key
+4. Point the agent at the repo root so it has visibility into `src/`, `knowledge_base/`, and `templates/`
+5. Config file: `config/vscode_agent.json` holds the agent's working rules for this project (see below)
 
 ## `config/vscode_agent.json` (what it should contain)
 
