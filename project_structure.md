@@ -14,14 +14,45 @@ Idea 2: Personal Brand Content Creator. The brand is Nelly's real AI/UX consulti
 
 ## Team roles (draft, confirm with group)
 
-- **Person 1:** Kanban board owner, tracks card movement, screenshots
-- **Person 2:** [fill in]
-- **Person 3:** [fill in]
+- **Kimia:** [Stage B]Kanban board owner, tracks card movement, screenshots
+- **Nelly:** [Stage A]
+- **Gretel:** [Stage C]
+
 
 Suggested split by pipeline stage, not by person doing "everything":
 - Document processing + knowledge base loading
 - LLM integration + prompt templates
 - Content pipeline orchestration + uniqueness evidence (human review log, style variation comparison, ChatGPT comparison)
+
+Stage A — Document + Knowledge Base
+
+Set up document_processor.py: markdown file reader
+Set up knowledge_base.py: load all primary + secondary files
+Build keyword-based selection logic (which docs match a topic)
+Test: load all 6 files, confirm content prints correctly
+Stage B — LLM + Prompts
+
+Set up llm_integration.py: connect to LLM API
+Write prompt_templates.py: thought_leadership template
+Write prompt_templates.py: linkedin_post template
+Write prompt_templates.py: case_study_summary template
+Test: generate one piece of content with dummy context
+Stage C — Pipeline + Uniqueness Evidence
+
+Set up content_pipeline.py: wire document → knowledge base → prompt → LLM
+Build human review checkpoint in main.py (draft saves, doesn't auto-publish)
+Build review.py: approve/edit/reject flow + review log
+Generate style variation comparison (same topic, 3 templates)
+Generate ChatGPT side-by-side comparison
+Write prompt iteration log
+Shared / cross-cutting cards (don't assign to a stage owner, anyone picks these up)
+
+Write README setup instructions
+Write agents.md
+Finalize rag_decision.md against what's actually built
+Prepare presentation slides
+Day 1 board screenshot
+Day 2 board screenshot
 
 ## RAG decision
 
