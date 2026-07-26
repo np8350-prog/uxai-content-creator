@@ -137,7 +137,36 @@ def display_generated_draft(
         print("\n" + "=" * 60)
         print("LINKEDIN QUALITY CHECK")
         print("=" * 60)
-        print(checker_results)
+
+        if checker_results.get("passed"):
+            print("Status: Passed")
+        else:
+            print("Status: Review Recommended")
+
+        print()
+        print("Issues:")
+
+        issues = checker_results.get("issues", [])
+
+        if issues:
+            for issue in issues:
+                print(f"- {issue}")
+        else:
+            print("- None")
+
+        print()
+        print("Suggestions:")
+
+        suggestions = checker_results.get(
+            "suggestions",
+            [],
+        )
+
+        if suggestions:
+            for suggestion in suggestions:
+                print(f"- {suggestion}")
+        else:
+            print("- None")
 
 
 def generate_draft(
@@ -230,10 +259,11 @@ def main() -> None:
 
     draft_number = 1
 
-    # This variable stores revision feedback.
+    # Stores reviewer feedback when the current draft
+    # must be revised.
     pending_feedback = None
 
-    # This variable stores the draft that must be revised.
+    # Stores the current draft when revision is requested.
     content_to_revise = None
 
     while True:
@@ -290,7 +320,29 @@ def main() -> None:
             print("=" * 60)
             print(review_result["final_content"])
 
-            print("\nContent workflow completed.")
+            next_action = review_result["next_action"]
+
+            # Start a completely new content request.
+            if next_action == "new_request":
+                topic = ask_for_topic()
+                content_type = select_content_type()
+
+                draft_number = 1
+                content_to_revise = None
+                pending_feedback = None
+                continue
+
+            # End the workflow when the user selects Exit.
+            if next_action == "exit":
+                print("\nContent workflow completed.")
+                break
+
+            # Safety fallback in case review.py returns
+            # an unexpected action.
+            print(
+                "\nUnknown review action. "
+                "The application will close safely."
+            )
             break
 
         # --------------------------------------------------
@@ -311,16 +363,37 @@ def main() -> None:
         if review_result["status"] == "rejected":
             next_action = review_result["next_action"]
 
-            # Generate an alternative draft using the same
-            # topic and content type.
+            # Start a new draft using the same topic
+            # and the same content type.
             if next_action == "new_draft":
                 content_to_revise = None
                 pending_feedback = None
                 draft_number += 1
                 continue
 
-            # Return to topic and content-type selection.
-            if next_action == "change_inputs":
+            # Keep the same topic and ask the user
+            # to select a different content type.
+            if next_action == "change_content_type":
+                content_type = select_content_type()
+
+                draft_number = 1
+                content_to_revise = None
+                pending_feedback = None
+                continue
+
+            # Keep the same content type and ask
+            # the user to enter a different topic.
+            if next_action == "change_topic":
+                topic = ask_for_topic()
+
+                draft_number = 1
+                content_to_revise = None
+                pending_feedback = None
+                continue
+
+            # Ask the user for both a new topic
+            # and a new content type.
+            if next_action == "change_both":
                 topic = ask_for_topic()
                 content_type = select_content_type()
 
@@ -329,8 +402,17 @@ def main() -> None:
                 pending_feedback = None
                 continue
 
-            # Exit cleanly.
-            print("\nApplication closed.")
+            # End the workflow when the user selects Exit.
+            if next_action == "exit":
+                print("\nApplication closed.")
+                break
+
+            # Safety fallback in case review.py returns
+            # an unexpected action.
+            print(
+                "\nUnknown review action. "
+                "The application will close safely."
+            )
             break
 
 
