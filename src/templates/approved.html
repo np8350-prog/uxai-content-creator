@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block step_label %}STEP 4 OF 4{% endblock %}
+
+{% block content %}
+<div class="wide-wrap narrow-wrap">
+  <div class="dark-card centered-card" style="margin-bottom: 32px;">
+    <div class="eyebrow eyebrow-success">Approved</div>
+    <h1 class="headline">Content approved</h1>
+    <p class="approved-sub">This draft is marked final and logged to the review history.</p>
+  </div>
+
+  <div class="content-card">
+    <div class="draft-body">
+      {{ draft_html | safe }}
+    </div>
+  </div>
+
+  <div class="button-row button-row-split" style="margin-top: 32px;">
+    <a href="{{ url_for('select_type_page') }}" class="btn-secondary-dark">Start a new draft</a>
+    <div style="display: flex; gap: 14px;">
+      <a href="{{ url_for('download_draft') }}" class="btn-secondary-dark" download>Download</a>
+      <a href="{{ url_for('new_draft') }}" class="btn-primary">Finish</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

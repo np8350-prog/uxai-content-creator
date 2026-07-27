@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block step_label %}REVIEW HISTORY{% endblock %}
+
+{% block content %}
+<div class="wide-wrap">
+  <h1 class="headline headline-light">Review history</h1>
+
+  {% if not entries %}
+  <div class="dark-card">
+    <p class="approved-sub">No decisions logged yet.</p>
+  </div>
+  {% endif %}
+
+  {% for e in entries %}
+  <div class="log-entry log-entry-{{ e.get('decision', '') }}">
+    <div class="log-entry-top">
+      <span class="log-decision-badge log-decision-{{ e.get('decision', '') }}">
+        {{ e.get('decision', '')|replace('_', ' ')|title }}
+      </span>
+      <span class="log-timestamp">{{ e.get('timestamp', '') }}</span>
+    </div>
+    <div class="log-entry-body">
+      <strong>{{ e.get('topic', '') }}</strong> · {{ e.get('content_type', '')|replace('_', ' ')|title }}
+      {% if e.get('feedback') %}
+      <div class="log-feedback">"{{ e.get('feedback') }}"</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

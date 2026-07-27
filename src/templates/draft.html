@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block step_label %}STEP {{ '3' if not revision_note else '4' }} OF 4{% endblock %}
+
+{% block content %}
+<div class="wide-wrap narrow-wrap">
+  <div class="topic-trail">{{ type_label }} · {{ topic }}</div>
+
+  <div class="content-card">
+    {% if revision_note %}
+    <div class="revised-tag-row">
+      <span class="revised-tag">Revised</span>
+      <span class="revised-note">"{{ revision_note }}"</span>
+    </div>
+    {% endif %}
+
+    <div class="draft-body">
+      {{ draft_html | safe }}
+    </div>
+  </div>
+
+  {% if checker %}
+  <div class="quality-card">
+    <div class="quality-header">
+      <div class="quality-title">Quality check</div>
+      <div class="quality-badge {% if checker.passed %}quality-badge-pass{% else %}quality-badge-warn{% endif %}">
+        {{ 'Passed' if checker.passed else 'Review Recommended' }}
+      </div>
+    </div>
+
+    {% if checker.issues %}
+    <div class="quality-section">
+      <div class="quality-section-label">Issues</div>
+      {% for issue in checker.issues %}
+      <div class="quality-line">– {{ issue }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if checker.suggestions %}
+    <div class="quality-section">
+      <div class="quality-section-label">Suggestions</div>
+      {% for s in checker.suggestions %}
+      <div class="quality-line">– {{ s }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('review_action') }}" class="review-form">
+    <div class="action-row">
+      <button type="submit" name="action" value="approve" class="action-card action-card-green">
+        <div class="action-card-title">Approve</div>
+        <div class="action-card-sub">Mark as final</div>
+      </button>
+      <button type="button" onclick="toggleEditPanel()" class="action-card action-card-blue">
+        <div class="action-card-title">Request edits</div>
+        <div class="action-card-sub">Send back with notes</div>
+      </button>
+      <button type="submit" name="action" value="reject" class="action-card action-card-red">
+        <div class="action-card-title">Reject</div>
+        <div class="action-card-sub">Discard this draft</div>
+      </button>
+    </div>
+
+    <div id="edit-panel" class="edit-panel hidden">
+      <label class="field-label" for="feedback">Describe the changes you'd like</label>
+      <textarea id="feedback" name="feedback" class="feedback-input" rows="3">{{ '' if not edit_error else '' }}</textarea>
+      {% if edit_error %}
+      <div class="error-text">{{ edit_error }}</div>
+      {% endif %}
+      <div class="button-row">
+        <button type="submit" name="action" value="request_edits" class="btn-primary">Resubmit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  function toggleEditPanel() {
+    var panel = document.getElementById('edit-panel');
+    panel.classList.toggle('hidden');
+    if (!panel.classList.contains('hidden')) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('feedback').focus();
+    }
+  }
+</script>
+
+{% endblock %}

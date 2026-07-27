@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block step_label %}STEP 4 OF 4{% endblock %}
+
+{% block content %}
+<div class="dark-card centered-card loading-card">
+  <div class="spinner"></div>
+  <div class="loading-text">Revising your {{ type_label|lower }}...</div>
+  <div class="loading-sub" id="loading-status">Applying: "{{ feedback }}"</div>
+</div>
+
+<script>
+  var statuses = [
+    "Applying: \"{{ feedback }}\"",
+    "Rebuilding the prompt with your feedback...",
+    "Rewriting the draft...",
+    "Running quality checks..."
+  ];
+  var i = 0;
+  var statusEl = document.getElementById("loading-status");
+
+  var interval = window.setInterval(function () {
+    i = (i + 1) % statuses.length;
+    statusEl.textContent = statuses[i];
+  }, 1400);
+
+  window.setTimeout(function () {
+    window.location.href = "{{ url_for('generate_revision') }}";
+  }, 60);
+</script>
+{% endblock %}

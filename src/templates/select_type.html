@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block step_label %}STEP 2 OF 4{% endblock %}
+
+{% block content %}
+<div class="wide-wrap">
+  <div class="topic-trail">
+    Topic: <span class="topic-trail-value">{{ topic }}</span>
+    · <a href="{{ url_for('topic_page') }}">edit</a>
+  </div>
+
+  <h1 class="headline headline-light">Choose a format</h1>
+
+  <form method="POST" action="{{ url_for('select_type_page') }}">
+    <div class="type-grid">
+      {% for c in content_types %}
+      <label class="type-card {% if selected == c.key %}type-card-selected{% endif %}">
+        <input
+          type="radio"
+          name="content_type"
+          value="{{ c.key }}"
+          {% if selected == c.key %}checked{% endif %}
+          class="type-card-radio"
+        >
+        <div class="type-card-title">{{ c.title }}</div>
+        <div class="type-card-desc">{{ c.desc }}</div>
+      </label>
+      {% endfor %}
+    </div>
+
+    <div class="button-row">
+      <button type="submit" class="btn-primary">Generate</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

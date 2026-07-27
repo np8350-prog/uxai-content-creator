@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UXAI Content Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-bg">
+  <div class="pattern"></div>
+
+  <div class="page-content">
+    <div class="topbar">
+      <a href="{{ url_for('new_draft') }}" class="brand">
+        <span class="brand-dot"></span>
+        UXAI Content Creator
+      </a>
+    <div class="topbar-right">
+      <a href="{{ url_for('review_history') }}" class="log-link">History</a>
+      <div class="step-label">{% block step_label %}{% endblock %}</div>
+    </div>
+    </div>
+
+    <div class="page-body">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

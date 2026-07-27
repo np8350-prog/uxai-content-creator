@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block step_label %}STEP 1 OF 4{% endblock %}
+
+{% block content %}
+<div class="dark-card centered-card">
+  <div class="eyebrow">New draft</div>
+  <h1 class="headline">What are we writing about?</h1>
+
+  <form method="POST" action="{{ url_for('topic_page') }}">
+    <label class="field-label" for="topic">Enter your content topic</label>
+    <input
+      type="text"
+      id="topic"
+      name="topic"
+      class="topic-input"
+      placeholder="e.g. chatbot UX"
+      value="{{ topic }}"
+      autofocus
+      required
+    >
+    <div class="button-row">
+      <button type="submit" class="btn-primary">Continue</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

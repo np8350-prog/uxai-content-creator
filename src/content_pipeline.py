@@ -178,7 +178,12 @@ Revise the draft according to the reviewer feedback.
 Requirements:
 - Preserve the original topic and content type.
 - Use the supplied knowledge-base context.
-- Apply the requested changes clearly.
+- Apply the requested changes clearly and completely.
+- If the feedback asks you to remove, avoid, or replace a specific word,
+  character, or punctuation mark (for example, em dashes), treat this as
+  a hard constraint. Scan the entire draft before finishing and make sure
+  no instance of it remains anywhere in the text, not just near the
+  beginning.
 - Keep accurate and relevant information.
 - Do not explain what you changed.
 - Return only the revised content.

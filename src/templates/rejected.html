@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block step_label %}STEP 4 OF 4{% endblock %}
+
+{% block content %}
+<div class="dark-card centered-card">
+  <div class="eyebrow eyebrow-error">Draft rejected</div>
+  <h1 class="headline">What would you like to do next?</h1>
+
+  <form method="POST" action="{{ url_for('reject_choice') }}">
+    <div class="reject-options">
+      <button type="submit" name="choice" value="regenerate" class="option-card">
+        Rewrite another draft
+      </button>
+      <button type="submit" name="choice" value="change_type" class="option-card">
+        Change content type (Linkedin , Leadership, Case study)
+      </button>
+      <button type="submit" name="choice" value="change_topic" class="option-card">
+        Change only the topic
+      </button>
+      <button type="submit" name="choice" value="change_both" class="option-card">
+        Change content type and the topic
+      </button>
+      <button type="submit" name="choice" value="exit" class="option-card">
+        Exit
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

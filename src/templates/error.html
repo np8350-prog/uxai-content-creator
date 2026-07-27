@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block step_label %}ERROR{% endblock %}
+
+{% block content %}
+<div class="dark-card centered-card">
+  <div class="eyebrow eyebrow-error">Something went wrong</div>
+  <h1 class="headline">Generation failed</h1>
+  <p class="approved-sub">{{ message }}</p>
+
+  <div class="button-row">
+    <a href="{{ url_for('select_type_page') }}" class="btn-primary">Try again</a>
+  </div>
+</div>
+{% endblock %}
