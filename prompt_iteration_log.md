@@ -250,3 +250,41 @@ This review suggests a targeted editorial refinement rather than an architectura
 By introducing a shared editorial layer and strengthening the format-specific guidance, the application can produce outputs that are more consistent, better adapted to their intended audience and more aligned with modern content design practices.
 
 These proposals are intended as the next iteration of the prompt design and are presented for team discussion before implementation.
+
+
+
+---
+
+# Confirmed Results (Post-Implementation)
+
+**Status:** Implemented and tested — 2026-07-27
+
+The refinements proposed above were implemented in `prompt_templates.py` and tested against the same topic ("chatbot ux") across all three templates. Results below are real generations, not projected outcomes.
+
+## Case Study Summary: the clearest before/after
+
+**Before refinement**, the Result section stated an unverified claim as fact:
+> "Clients report clearer user understanding of chatbot behavior, reduced frustration, and increased engagement."
+
+This violated the template's own instruction not to invent statistics or client feedback. No such client existed; this was a hypothetical case study.
+
+**After refinement**, the same section correctly named its own limitation instead of fabricating a result:
+> "While specific metrics aren't available here, this approach directly targets the 80% shipped versus 31% production usage gap..."
+
+This confirms Iteration 7 (Trust & grounding) and the "clarify actual results vs expected impact" requirement worked as intended. The model now distinguishes real data (the Gartner/S&P adoption stats, which are grounded in `industry_trends.md`) from unverified outcomes, instead of blending them together as equally factual.
+
+## Thought Leadership: thesis and structure
+
+**Before refinement**, the thesis was present but diffuse across six numbered lessons with no single throughline.
+
+**After refinement**, the piece opens with one stated thesis ("chatbot UX is fundamentally a governance challenge, not a superficial UI one") and explicitly returns to it in the closing paragraph. It also surfaces one genuine trade-off (simplicity vs. control), as required by Iteration 1 and the new Thought Leadership Requirements.
+
+## LinkedIn Post: hook and length
+
+**Before refinement**, the opening was a direct statement, functional but not built around a defined hook pattern.
+
+**After refinement**, the post opens with a stated misconception ("Most chatbot UX fails because it ignores the AI beneath the interface"), matching the required hook types (misconception, lesson learned, challenge, or observation). Length landed within the 900-1300 character target.
+
+## Open item carried forward
+
+The Gartner 80%/31% adoption stat now appears across all three formats when the topic overlaps. This is accurate and grounded, not fabricated, but worth monitoring: if the system generates many pieces on similar topics, the same statistic repeating across a content calendar could start to feel repetitive. Not a correctness issue, a variety issue to watch if this system is used for ongoing content, not just this project.

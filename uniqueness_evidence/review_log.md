@@ -54,3 +54,23 @@ Every human review decision made while running the content pipeline, in order.
 - Content type: case_study_summary
 - Decision: approved
 
+## 2026-07-27 11:20
+- Topic: chatbot ux
+- Content type: case_study_summary
+- Decision: approved
+
+## 2026-07-27 11:31
+- Topic: chatbot ux
+- Content type: thought_leadership
+- Decision: approved
+
+## 2026-07-27 11:32
+- Topic: chatbot ux
+- Content type: linkedin_post
+- Decision: approved
+
+## 2026-07-27 11:33
+- Topic: chatbot ux
+- Content type: case_study_summary
+- Decision: approved
+
