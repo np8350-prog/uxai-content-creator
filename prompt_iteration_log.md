@@ -2,7 +2,7 @@
 
 **Project:** AI Content Creator  
 **Stage:** C – Output Evaluation & Prompt Iteration  
-**Status:** Draft – For Team Review
+**Status:** Implemented and Validated
 
 ---
 
@@ -20,9 +20,9 @@ After reviewing multiple outputs, we found that most opportunities for improveme
 
 The generated content is technically correct, but its quality and consistency vary depending on the topic, audience and content format.
 
-This document captures our findings, outlines the proposed refinements and records the next iteration of the prompt design.
+This document captures our findings, documents the implemented prompt refinements and records the results of the final validation.
 
-The proposed refinements leave the current architecture, retrieval process and knowledge base unchanged. They introduce a shared editorial layer that makes writing guidance explicit across all content types.
+The implemented refinements leave the current architecture, retrieval process and knowledge base unchanged.
 
 ---
 
@@ -111,8 +111,8 @@ The review identified a series of refinements intended to improve editorial cons
 
 Each iteration addresses a specific observation identified during the evaluation phase.
 
-| Iteration | Observation | Proposed Refinement | Expected Impact |
-|-----------|-------------|---------------------|-----------------|
+| Iteration | Observation | Implemented Refinement | Validated Impact |
+|-----------|-------------|------------------------|------------------|
 | **1. Audience-first writing** | The prompts define the author but not the intended reader or communication objective. | Add a short planning step asking the model to identify the target audience, the core message and the desired reader outcome before writing. | Better relevance, more appropriate terminology and stronger communication. |
 | **2. One core message** | Some outputs attempted to cover multiple ideas with equal importance. | Encourage the model to prioritise a single takeaway and remove supporting information that does not reinforce it. | More focused, concise and memorable content. |
 | **3. Shared Editorial Guidelines** | Editorial behaviour is distributed across templates and often inferred by the model. | Introduce a reusable editorial layer shared by every content type before the format-specific instructions. | Greater consistency while keeping individual templates specialised. |
@@ -147,13 +147,13 @@ This approach reduces duplication, simplifies maintenance and provides a consist
 
 ---
 
-# Proposed Prompt Changes
+# Implemented Prompt Changes
 
-The proposed refinements do not replace the current prompt templates. Instead, they extend them by introducing a shared editorial layer and strengthening the format-specific instructions where appropriate.
+The implemented refinements preserve the existing prompt templates while introducing a shared editorial layer and strengthening the format-specific instructions where appropriate.
 
 ## Shared change (applies to all templates)
 
-### Current structure
+### Previous structure
 
 ```text
 Role
@@ -165,7 +165,7 @@ Knowledge Base Context
 Format-specific Requirements
 ```
 
-### Proposed structure
+### Implemented structure
 
 ```text
 Role
@@ -189,8 +189,8 @@ This separation reduces prompt duplication while keeping each template focused o
 
 ## Thought Leadership
 
-| Current | Proposed refinement |
-|----------|---------------------|
+| Previous behavior | Proposed refinement |
+|-------------------|---------------------|
 | Context is followed directly by format-specific instructions. | Insert the Shared Editorial Guidelines immediately after the retrieved context. |
 | The prompt relies on the model to define the audience and central argument. | Add guidance to identify the target audience, establish one clear thesis and conclude with a practical takeaway. |
 | Long-form structure is left largely to the model. | Encourage descriptive headings and a logical information hierarchy to improve readability and semantic organisation. |
@@ -199,8 +199,8 @@ This separation reduces prompt duplication while keeping each template focused o
 
 ## LinkedIn Post
 
-| Current | Proposed refinement |
-|----------|---------------------|
+| Previous behavior | Proposed refinement |
+|-------------------|---------------------|
 | Context is followed directly by format-specific instructions. | Insert the Shared Editorial Guidelines immediately after the retrieved context. |
 | Platform-specific writing behaviour is mostly inferred by the model. | Add guidance for mobile-first reading, concise paragraphs, visual rhythm and communicating the main idea before the "See more" break. |
 | Openings and endings vary across generations. | Define recommended hook patterns and encourage a natural closing aligned with the message rather than generic engagement prompts. |
@@ -210,8 +210,8 @@ This separation reduces prompt duplication while keeping each template focused o
 
 ## Case Study Summary
 
-| Current | Proposed refinement |
-|----------|---------------------|
+| Previous behavior | Proposed refinement |
+|-------------------|---------------------|
 | Existing structure consistently produces well-organised summaries. | Preserve the current structure. |
 | Grounding rules are limited to this template. | Move factual grounding principles into the Shared Editorial Guidelines so they apply consistently across every content type. |
 | The narrative sometimes focuses on activities rather than outcomes. | Reinforce a transformation-based narrative and clearly distinguish actual results from expected impact. |
@@ -219,39 +219,39 @@ This separation reduces prompt duplication while keeping each template focused o
 
 ---
 
-# Implementation Proposal
+# Implementation
 
-The proposed refinements do not require changes to:
+The refinements were implemented exclusively in `prompt_templates.py`.
+
+No changes were required to:
 
 - the knowledge base;
 - the retrieval strategy;
 - the application workflow;
 - the content pipeline.
 
-The implementation is limited to the prompt templates.
+The updated prompts were validated using the same topic ("chatbot ux") across the three content templates to enable a direct before-and-after comparison.
 
-If the team agrees with the proposed refinements, the next iteration would consist of:
+The validation focused on:
 
-1. Adding the Shared Editorial Guidelines to the three prompt templates.
-2. Updating the format-specific instructions for each content type.
-3. Regenerating the same test topics used during the initial evaluation.
-4. Comparing the outputs before and after the refinements to assess improvements in readability, consistency, editorial quality and content differentiation.
-
-Using the same evaluation scenarios allows the team to compare results under equivalent conditions and determine whether the proposed refinements produce measurable improvements.
+1. audience adaptation;
+2. message clarity;
+3. platform-specific behaviour;
+4. context transformation;
+5. trust and factual grounding;
+6. differentiation between content formats.
 
 ---
 
 # Conclusion
 
-The current prompt architecture already provides a solid foundation for generating context-aware content.
+The prompt iteration improved editorial consistency without changing the product architecture.
 
-This review suggests a targeted editorial refinement rather than an architectural redesign.
+The shared Editorial Guidelines now provide a common writing standard across all templates, while the format-specific requirements continue to define the behaviour of Thought Leadership articles, LinkedIn posts and Case Study summaries.
 
-By introducing a shared editorial layer and strengthening the format-specific guidance, the application can produce outputs that are more consistent, better adapted to their intended audience and more aligned with modern content design practices.
+The validation confirmed measurable improvements in thesis clarity, platform adaptation and factual grounding. The strongest improvement appeared in the Case Study template, where unsupported client outcomes were replaced with explicitly qualified statements based only on available evidence.
 
-These proposals are intended as the next iteration of the prompt design and are presented for team discussion before implementation.
-
-
+One observation remains for future iterations: when multiple pieces cover related topics, the same grounded statistic may appear repeatedly across different formats. While factually correct, this could reduce content variety over time and should be monitored if the application is used for continuous content production.
 
 ---
 

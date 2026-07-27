@@ -8,6 +8,8 @@ The AI Content Creator is an AI-assisted application that generates professional
 
 The product addresses a common challenge faced by professionals and small teams who publish content regularly: creating high-quality content efficiently while maintaining a consistent voice and reducing repetitive manual work. Rather than automating publication, the application positions AI as a collaborative assistant. Every generated draft passes through a review stage where users can approve, revise or reject the content before downloading the final version, balancing efficiency with editorial control.
 
+The same generation pipeline is available through both a web interface and a command-line interface, allowing different users to interact with the application without changing the underlying workflow.
+
 Stakeholder management is central to the success of this workflow because different stakeholders contribute at different stages of the content lifecycle. Some define and maintain the knowledge that guides content generation, others validate editorial quality before publication, while the project team ensures the application remains reliable and maintainable.
 
 Usability plays an equally important role in adoption. The implemented workflow follows a clear sequence, provides continuous feedback during content generation and preserves human oversight throughout the review process. These design decisions reduce unnecessary complexity while supporting the project's objective of delivering a practical AI-assisted content creation experience rather than a fully autonomous publishing tool.
@@ -22,7 +24,7 @@ Stakeholders have been grouped according to their relationship with the product 
 
 | Stakeholder | Category | Why They Are a Stakeholder | Value Received | Value Contributed |
 |-------------|----------|----------------------------|----------------|-------------------|
-| **Content Creator / End User** | Primary | Uses the application to generate professional, brand-aligned content through the complete workflow. | Faster content creation, greater consistency and reduced manual effort. | Validates outputs, provides revision feedback and determines whether content is approved for publication. |
+| **Professional Content Creator / End User** | Primary | Uses the application to generate professional, brand-aligned content through the complete workflow. | Faster content creation, greater consistency and reduced manual effort. | Validates outputs, provides revision feedback and determines whether content is approved for publication. |
 | **Brand or Content Owner** | Primary | Owns the voice, positioning and knowledge represented by the generated content. | Content aligned with brand identity and messaging. | Provides and validates the knowledge base that guides generation. |
 | **Human Reviewer / Approver** | Primary | Reviews every generated draft before publication or download. This role is embedded in the implemented workflow rather than being optional. | Editorial control, reduced publishing risk and confidence in generated outputs. | Approves, revises or rejects drafts, ensuring quality before publication. |
 | **Knowledge Owner / Subject Matter Expert** | Secondary | Maintains the documentation that supplies contextual knowledge to the application. | Accurate representation of expertise within generated content. | Keeps the knowledge base current, relevant and trustworthy. |
