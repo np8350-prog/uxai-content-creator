@@ -12,9 +12,9 @@ No RAG here. Files are read in full. See rag_decision.md for why.
 import os
 from pathlib import Path
 
-PRIMARY_DIR = Path("knowledge_base/primary")
-SECONDARY_DIR = Path("knowledge_base/secondary")
-
+BASE_DIR = Path(__file__).resolve().parent.parent
+PRIMARY_DIR = BASE_DIR / "knowledge_base" / "primary"
+SECONDARY_DIR = BASE_DIR / "knowledge_base" / "secondary"
 
 def read_markdown_file(filepath):
     """

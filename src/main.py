@@ -14,6 +14,7 @@ This module controls the user experience and coordinates:
 - generation of alternative drafts
 """
 
+from typing import Optional
 from content_pipeline import generate_content_pipeline
 from review import review_content
 
@@ -172,15 +173,15 @@ def display_generated_draft(
 def generate_draft(
     topic: str,
     content_type: str,
-    current_content: str | None = None,
-    feedback: str | None = None,
-) -> dict | None:
+    current_content: Optional[str] = None,
+    feedback: Optional[str] = None,
+) -> Optional[dict]:
     """
     Generate or revise a draft safely.
 
     Returns
     -------
-    dict | None
+    Optional[dict]
         Pipeline result, or None if generation fails.
     """
 

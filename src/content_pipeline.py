@@ -13,6 +13,7 @@ Workflow:
 7. Return the complete pipeline result.
 """
 
+from typing import Optional
 from knowledge_base import (
     load_all_documents,
     select_relevant_documents,
@@ -203,7 +204,7 @@ def run_content_checker(
 
     Returns
     -------
-    dict | None
+    Optional[dict]
         Checker results for LinkedIn posts, otherwise None.
     """
 
@@ -216,8 +217,8 @@ def run_content_checker(
 def generate_content_pipeline(
     topic: str,
     content_type: str,
-    current_content: str | None = None,
-    feedback: str | None = None,
+    current_content: Optional[str] = None,
+    feedback: Optional[str] = None,
 ) -> dict:
     """
     Generate a new draft or revise an existing draft.
@@ -236,10 +237,10 @@ def generate_content_pipeline(
     content_type : str
         Requested content format.
 
-    current_content : str | None
+    current_content : Optional[str]
         Existing draft when a revision is requested.
 
-    feedback : str | None
+    feedback : Optional[str]
         Human reviewer feedback.
 
     Returns
