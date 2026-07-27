@@ -10,6 +10,39 @@ Its only responsibility is to collect the reviewer's decision:
 2. Request an edit.
 3. Reject the draft.
 """
+from datetime import datetime
+from pathlib import Path
+
+
+LOG_PATH = (
+    Path(__file__).resolve().parent.parent
+    / "uniqueness_evidence"
+    / "review_log.md"
+)
+
+
+def log_review_decision(topic, content_type, status, feedback=None):
+    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    entry = f"## {timestamp}\n"
+    entry += f"- Topic: {topic}\n"
+    entry += f"- Content type: {content_type}\n"
+    entry += f"- Decision: {status}\n"
+
+    if feedback:
+        entry += f"- Feedback: {feedback}\n"
+
+    entry += "\n"
+
+    file_exists = LOG_PATH.exists()
+
+    with open(LOG_PATH, "a", encoding="utf-8") as f:
+        if not file_exists:
+            f.write("# Review Log\n\n")
+            f.write("Every human review decision made while running the content pipeline, in order.\n\n")
+        f.write(entry)
+
 
 
 def ask_for_edit_feedback() -> str:
@@ -118,7 +151,7 @@ def ask_after_rejection() -> str:
         print("\nInvalid option. Please enter 1, 2, 3, 4, or 5.")
 
 
-def review_content(generated_content: str) -> dict:
+def review_content(generated_content: str, topic: str, content_type: str)-> dict:
     """
     Collect the human reviewer's decision.
 
@@ -153,6 +186,7 @@ def review_content(generated_content: str) -> dict:
         # Approve the current draft and ask whether
         # the user wants to start another request or exit.
         if choice == "1":
+            log_review_decision(topic, content_type, "approved")
             next_action = ask_after_approval()
 
             return {
@@ -166,6 +200,8 @@ def review_content(generated_content: str) -> dict:
         if choice == "2":
             feedback = ask_for_edit_feedback()
 
+            log_review_decision(topic, content_type, "edit_requested", feedback)
+
             return {
                 "status": "edit_requested",
                 "final_content": None,
@@ -176,6 +212,8 @@ def review_content(generated_content: str) -> dict:
         # Reject the current draft and collect the user's next action.
         if choice == "3":
             print("\nThe current draft has been rejected.")
+            log_review_decision(topic, content_type, "rejected")
+
 
             next_action = ask_after_rejection()
 

@@ -308,7 +308,7 @@ def main() -> None:
         )
 
         review_result = review_content(
-            generated_content
+            generated_content, topic, content_type
         )
 
         # --------------------------------------------------
