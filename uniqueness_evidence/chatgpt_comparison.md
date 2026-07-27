@@ -1,3 +1,4 @@
+
 # Uniqueness Evidence: System Output vs. Generic ChatGPT
 
 Same topic. Same content type. No brand context given to ChatGPT, matching how someone would actually use it without a system like this one.

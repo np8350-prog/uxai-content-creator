@@ -186,3 +186,9 @@ M dashes
 - Content type: linkedin_post
 - Decision: approved
 
+## 2026-07-27 16:18
+- Topic: Agent first designs
+- Content type: linkedin_post
+- Decision: edit_requested
+- Feedback: add 3 related hashtags at the end
+
