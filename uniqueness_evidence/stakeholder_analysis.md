@@ -194,4 +194,4 @@ The next logical improvement is to reduce the effort required during content rev
 
 Overall, the product provides a solid foundation for future iterations by combining AI-assisted content generation with a workflow that remains predictable, maintainable and aligned with stakeholder responsibilities.
 
-The current implementation demonstrates that combining retrieval-augmented generation with structured human review creates a practical workflow that balances efficiency, content quality and editorial control for the scope of this MVP.
+The current implementation demonstrates that combining structured, non-RAG context injection from a curated knowledge base with mandatory human review creates a practical workflow that balances efficiency, content quality and editorial control for the scope of this MVP.

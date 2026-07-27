@@ -192,3 +192,19 @@ M dashes
 - Decision: edit_requested
 - Feedback: add 3 related hashtags at the end
 
+## 2026-07-27 17:16
+- Topic: AI driven product design
+- Content type: linkedin_post
+- Decision: edit_requested
+- Feedback: add real statistics to the post
+
+## 2026-07-27 17:20
+- Topic: AI driven product design
+- Content type: linkedin_post
+- Decision: approved
+
+## 2026-07-27 17:30
+- Topic: chatbot ux
+- Content type: case_study_summary
+- Decision: approved
+
